@@ -1,5 +1,6 @@
 using Cortex.Mediator.Commands;
 using Cortex.Mediator.DependencyInjection;
+
 using Fleet.Care.Platform.Resources.Errors;
 using Fleet.Care.Platform.Resources.Shared;
 using Fleet.Care.Platform.Shared.Domain.Repositories;
@@ -87,6 +88,7 @@ builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
 
 
 // FleetCare Business Bounded Contexts Dependency Injection Configuration
+
 // FleetManagement Bounded Context
 
 
@@ -100,7 +102,6 @@ builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
 
 
 // VehicleOperations Bounded Context
-
 
 
 // IAM Bounded Context Injection Configuration
