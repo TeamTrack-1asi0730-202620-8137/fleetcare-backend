@@ -1,5 +1,10 @@
+using Fleet.Care.Platform.FleetManagement.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
+using Fleet.Care.Platform.IncidentManagement.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
+using Fleet.Care.Platform.InspectionManagement.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
+using Fleet.Care.Platform.MaintenanceManagement.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
+using Fleet.Care.Platform.VehicleOperations.Infrastructure.Persistence.EntityFrameworkCore.Configuration.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Configuration;
@@ -35,11 +40,11 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 
 
         // FleetCare business bounded contexts
-        //    builder.ApplyFleetManagementConfiguration();
-        //    builder.ApplyInspectionManagementConfiguration();
-        //    builder.ApplyIncidentManagementConfiguration();
-        //    builder.ApplyMaintenanceManagementConfiguration();
-        //    builder.ApplyVehicleOperationsConfiguration();
+            builder.ApplyFleetManagementConfiguration();
+            builder.ApplyInspectionManagementConfiguration();
+            builder.ApplyIncidentManagementConfiguration();
+            builder.ApplyMaintenanceManagementConfiguration();
+            builder.ApplyVehicleOperationsConfiguration();
 
         // IAM Context
         //    builder.ApplyIamConfiguration();
