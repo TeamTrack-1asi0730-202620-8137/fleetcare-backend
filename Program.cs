@@ -1,5 +1,29 @@
 using Cortex.Mediator.Commands;
 using Cortex.Mediator.DependencyInjection;
+using Fleet.Care.Platform.FleetManagement.Application.CommandServices;
+using Fleet.Care.Platform.FleetManagement.Application.Internal.CommandServices;
+using Fleet.Care.Platform.FleetManagement.Application.Internal.QueryServices;
+using Fleet.Care.Platform.FleetManagement.Application.QueryServices;
+using Fleet.Care.Platform.FleetManagement.Domain.Repositories;
+using Fleet.Care.Platform.FleetManagement.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using Fleet.Care.Platform.IncidentManagement.Application.CommandServices;
+using Fleet.Care.Platform.IncidentManagement.Application.Internal.CommandServices;
+using Fleet.Care.Platform.IncidentManagement.Application.Internal.QueryServices;
+using Fleet.Care.Platform.IncidentManagement.Application.QueryServices;
+using Fleet.Care.Platform.IncidentManagement.Domain.Repositories;
+using Fleet.Care.Platform.IncidentManagement.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using Fleet.Care.Platform.InspectionManagement.Application.CommandServices;
+using Fleet.Care.Platform.InspectionManagement.Application.Internal.CommandServices;
+using Fleet.Care.Platform.InspectionManagement.Application.Internal.QueryServices;
+using Fleet.Care.Platform.InspectionManagement.Application.QueryServices;
+using Fleet.Care.Platform.InspectionManagement.Domain.Repositories;
+using Fleet.Care.Platform.InspectionManagement.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
+using Fleet.Care.Platform.MaintenanceManagement.Application.CommandServices;
+using Fleet.Care.Platform.MaintenanceManagement.Application.Internal.CommandServices;
+using Fleet.Care.Platform.MaintenanceManagement.Application.Internal.QueryServices;
+using Fleet.Care.Platform.MaintenanceManagement.Application.QueryServices;
+using Fleet.Care.Platform.MaintenanceManagement.Domain.Repositories;
+using Fleet.Care.Platform.MaintenanceManagement.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 
 using Fleet.Care.Platform.Resources.Errors;
 using Fleet.Care.Platform.Resources.Shared;
@@ -11,7 +35,12 @@ using Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.
 using Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Interceptors;
 using Fleet.Care.Platform.Shared.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using Fleet.Care.Platform.Shared.Infrastructure.Pipeline.Middleware.Components;
-
+using Fleet.Care.Platform.VehicleOperations.Application.CommandServices;
+using Fleet.Care.Platform.VehicleOperations.Application.Internal.CommandServices;
+using Fleet.Care.Platform.VehicleOperations.Application.Internal.QueryServices;
+using Fleet.Care.Platform.VehicleOperations.Application.QueryServices;
+using Fleet.Care.Platform.VehicleOperations.Domain.Repositories;
+using Fleet.Care.Platform.VehicleOperations.Infrastructure.Persistence.EntityFrameworkCore.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Scalar.AspNetCore;
@@ -86,22 +115,63 @@ builder.Services.AddOpenApi(options => { options.AddDocumentTransformer<BearerSe
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
 
+// Publishing Bounded Context
+
+// Profiles Bounded Context 
+
 
 // FleetCare Business Bounded Contexts Dependency Injection Configuration
-
 // FleetManagement Bounded Context
-
+builder.Services.AddScoped<IFleetRepository, FleetRepository>();
+builder.Services.AddScoped<IFleetQueryService, FleetQueryService>();
+builder.Services.AddScoped<IFleetCommandService, FleetCommandService>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IVehicleQueryService, VehicleQueryService>();
+builder.Services.AddScoped<IVehicleCommandService, VehicleCommandService>();
 
 // InspectionManagement Bounded Context
-
+builder.Services.AddScoped<IChecklistRepository, ChecklistRepository>();
+builder.Services.AddScoped<IChecklistQueryService, ChecklistQueryService>();
+builder.Services.AddScoped<IChecklistCommandService, ChecklistCommandService>();
+builder.Services.AddScoped<IChecklistItemRepository, ChecklistItemRepository>();
+builder.Services.AddScoped<IChecklistItemQueryService, ChecklistItemQueryService>();
+builder.Services.AddScoped<IChecklistItemCommandService, ChecklistItemCommandService>();
+builder.Services.AddScoped<IInspectionRepository, InspectionRepository>();
+builder.Services.AddScoped<IInspectionQueryService, InspectionQueryService>();
+builder.Services.AddScoped<IInspectionCommandService, InspectionCommandService>();
+builder.Services.AddScoped<IInspectionResultRepository, InspectionResultRepository>();
+builder.Services.AddScoped<IInspectionResultQueryService, InspectionResultQueryService>();
+builder.Services.AddScoped<IInspectionResultCommandService, InspectionResultCommandService>();
+builder.Services.AddScoped<IInspectionEvidenceRepository, InspectionEvidenceRepository>();
+builder.Services.AddScoped<IInspectionEvidenceQueryService, InspectionEvidenceQueryService>();
+builder.Services.AddScoped<IInspectionEvidenceCommandService, InspectionEvidenceCommandService>();
 
 // IncidentManagement Bounded Context
-
+builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
+builder.Services.AddScoped<IIncidentQueryService, IncidentQueryService>();
+builder.Services.AddScoped<IIncidentCommandService, IncidentCommandService>();
+builder.Services.AddScoped<IIncidentEvidenceRepository, IncidentEvidenceRepository>();
+builder.Services.AddScoped<IIncidentEvidenceQueryService, IncidentEvidenceQueryService>();
+builder.Services.AddScoped<IIncidentEvidenceCommandService, IncidentEvidenceCommandService>();
 
 // MaintenanceManagement Bounded Context
-
+builder.Services.AddScoped<IMaintenancePlanRepository, MaintenancePlanRepository>();
+builder.Services.AddScoped<IMaintenancePlanQueryService, MaintenancePlanQueryService>();
+builder.Services.AddScoped<IMaintenancePlanCommandService, MaintenancePlanCommandService>();
+builder.Services.AddScoped<IMaintenanceRecordRepository, MaintenanceRecordRepository>();
+builder.Services.AddScoped<IMaintenanceRecordQueryService, MaintenanceRecordQueryService>();
+builder.Services.AddScoped<IMaintenanceRecordCommandService, MaintenanceRecordCommandService>();
+builder.Services.AddScoped<IMaintenancePartRepository, MaintenancePartRepository>();
+builder.Services.AddScoped<IMaintenancePartQueryService, MaintenancePartQueryService>();
+builder.Services.AddScoped<IMaintenancePartCommandService, MaintenancePartCommandService>();
 
 // VehicleOperations Bounded Context
+builder.Services.AddScoped<IMileageRecordRepository, MileageRecordRepository>();
+builder.Services.AddScoped<IMileageRecordQueryService, MileageRecordQueryService>();
+builder.Services.AddScoped<IMileageRecordCommandService, MileageRecordCommandService>();
+builder.Services.AddScoped<IFuelRecordRepository, FuelRecordRepository>();
+builder.Services.AddScoped<IFuelRecordQueryService, FuelRecordQueryService>();
+builder.Services.AddScoped<IFuelRecordCommandService, FuelRecordCommandService>();
 
 
 // IAM Bounded Context Injection Configuration
